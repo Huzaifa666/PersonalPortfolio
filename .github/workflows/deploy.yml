@@ -18,20 +18,43 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          run_install: false
+
+      - name: Get pnpm cache directory
+        shell: bash
+        run:
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm cache
+        uses: action/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-cache-
+
       - name: Install dependencies
         run:
-          npm install
+          pnpm i
 
       - name: Build Project
         run:
-          npm run build
+          pnpm run build
 
       - name: Add Custom Domain
         run:
           echo "www.huzaifavakil.com" > ./dist/CNAME
 
       - name: Deploy to gh pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: dist
+          clean: true
+          clean-exclude: |
+            CNAME
