@@ -17,7 +17,7 @@ function App() {
                         <span>Hello, I'm <span className={classes.spanH}>Huzaifa</span>.</span>
                         <span>I'm a full stack web developer.</span>
                     </div>
-                    <Button visibleFrom="md" size="md" variant="light">More about me</Button>
+                    <Button visibleFrom="md" size="lg" variant="light">More about me</Button>
                     <Button hiddenFrom="md" size="sm" variant="light">More about me</Button>
                 </Box>
             </AppShellMain>
