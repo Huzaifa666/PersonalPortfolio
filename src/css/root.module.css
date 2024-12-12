@@ -1,0 +1,26 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+}
+
+.boxSpan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 3rem
+}
+
+.spanH {
+    color: var(--mantine-color-blue-3)
+}
+
+
+
+@media (max-width: 768px) {
+    .boxSpan{
+        font-size: 1.6rem;
+    }
+}
