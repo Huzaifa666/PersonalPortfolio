@@ -24,11 +24,11 @@ jobs:
 
       - name: Build Project
         run:
-          npm run build
+          vite build
 
       - name: Add Custom Domain
         run:
-          echo "www.huzaifavakil.com" > ./build/CNAME
+          echo "www.huzaifavakil.com" > ./dist/CNAME
 
       - name: Deploy to gh pages
         uses: peaceiris/actions-gh-pages@v3
