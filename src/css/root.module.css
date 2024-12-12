@@ -24,3 +24,9 @@
         font-size: 1.6rem;
     }
 }
+
+@media (min-width: 2000px) {
+    .boxSpan{
+        font-size: 5rem;
+    }
+}
